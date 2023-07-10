@@ -213,7 +213,7 @@ class multiPurposeOperator
 
 }
 
-class OperatorDict
+export class OperatorDict
 {
 	constructor()
 	{
@@ -336,7 +336,7 @@ class OperatorDict
 
 }
 
-class VariableDict
+export class VariableDict
 {
 	constructor(operatorDict)
 	{
@@ -619,6 +619,8 @@ function solve(topNode, operatorDictionary) {
 	
 	function recursiveSolve(node) {
 		let elements = node.getElements();
+		if (elements.length === 1 && elements[0] instanceof ExpressionNode) { elements[0] = recursiveSolve(elements[0])}
+
 		for (const operatorGroup of operatorDictionary.getOrderOfOperators()) {
 				for (let index = 0; index < elements.length; index++) {
 					if (operatorGroup.includes(elements[index])) { 
@@ -652,19 +654,18 @@ function solve(topNode, operatorDictionary) {
 				}
 
 		}
-
 		return elements[0]
-
+		
 	}
 	recursiveSolve(topNode)
+	console.log(topNode.getElements()[0])
 	return topNode.getElements()[0]
 }
 
 
 
-export function solveExpression(expressionString)
+export function solveExpression(expressionString, operatorDictionary, variableDictionary)
 {
-	let operatorDictionary = new OperatorDict(); // Create an operator dictionary with all operators
 	let expressionArray = splitExpressionElements(expressionString, operatorDictionary); // split the expressionstring into arrays 
 	
 	if (validateParenthesisLocations(expressionArray) === false) {return null }
@@ -673,7 +674,6 @@ export function solveExpression(expressionString)
 	let invalidOperators = operatorCheckTree(topNode, operatorDictionary);
 	if (invalidOperators.length > 0) {return null }
 	convert(topNode, operatorDictionary)
-	printExpressionNodeTree(topNode)
 	let result = solve(topNode, operatorDictionary)
 	
 	return result;
