@@ -1,3 +1,5 @@
+import { checkExpression } from "./internal.js"
+
 const inputsContainer = document.getElementById('inputs-container');
 const inputButtonContainer = document.getElementById('input-button-container');
 const mainInput = document.getElementById('main-input');
@@ -17,10 +19,19 @@ function analyzeAction(action) {
     mainInput.value = '';
   } else if (action === 'Enter') {
     if (mainInput.value != '') {
-      moveInputsUpByOne();
+      if (checkExpression(mainInput.value) === 0) {
+        mainInput.style.border = "1px solid black"
+        mainInput.style.backgroundColor = "white"
+        moveInputsUpByOne();
+      }
+      else {
+        mainInput.style.border = "1px solid red"
+        mainInput.style.backgroundColor = "pink"
+      }
+      
     }
   } else {
-    mainInput.value += event.target.dataset.id;
+    mainInput.value += action;
   }
 }
 
@@ -29,6 +40,9 @@ function moveInputsUpByOne() {
   for (const [index, input] of historyInputsArray.entries()) {
     if (index != historyInputsArray.length - 1) {
       input.value = historyInputsArray[index + 1].value;
+      if (input.value != "") {
+        input.style.border = "1px solid black"
+      }
     } else {
       input.value = '';
     }

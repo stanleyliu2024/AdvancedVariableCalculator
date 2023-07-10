@@ -61,11 +61,15 @@ main {
 .history-input {
   width: 100%;
   padding: 1em;
+  border: none;
+}
+
+#main-input {
+  border: 1px solid black;
 }
 
 
 #input-button-container {
-
 
   display: grid;
 

@@ -287,7 +287,6 @@ class OperatorDict
 		}
 		else if (classToUse instanceof TwoSidedOperator)
 		{
-
 			result = classToUse.validateOperatorPosition(first, second);
 		}
 		return result;
@@ -399,12 +398,12 @@ class VariableDict
 
 function createExpressionNodeTree(expressionArray)
 {
-	currentNode = new ExpressionNode(null);
+	let currentNode = new ExpressionNode(null);
 	for (const element of expressionArray)
 	{
 		if (element === '(')
 		{
-			childNode = new ExpressionNode(currentNode);
+			let childNode = new ExpressionNode(currentNode);
 			currentNode.addToElements(childNode);
 			currentNode = childNode;
 		}
@@ -422,7 +421,7 @@ function createExpressionNodeTree(expressionArray)
 }
 function printExpressionNodeTree(topNode)
 {
-	layers = [];
+	let layers = [];
 	function recursiveTraverse(node, currentLayer)
 	{
 		if (currentLayer === layers.length)
@@ -457,18 +456,18 @@ function splitFirstNumbersFromRestString(currentElement)
 	if (currentElement === null) { return [null, null]; }
 	if (currentElement === '') { return ['', '']; }
 		
-	numbersFirst = currentElement.match(/^\d+/);
+	let numbersFirst = currentElement.match(/^\d+/);
 	
-	stringNumbers = numbersFirst === null ? '' : numbersFirst[0];
-	stringString = currentElement.substr(stringNumbers.length);
+	let stringNumbers = numbersFirst === null ? '' : numbersFirst[0];
+	let stringString = currentElement.substr(stringNumbers.length);
 	
 	return [stringNumbers, stringString];
 }
 
 function splitExpressionElements(expressionString, operatorDictionary)
 {
-	expressionArray = [];
-	currentElement = '';
+	let expressionArray = [];
+	let currentElement = '';
 	for (const char of expressionString)
 	{	
 		if (char === ' ')
@@ -477,7 +476,7 @@ function splitExpressionElements(expressionString, operatorDictionary)
 		}
 		if (char === '(' || char === ')' || operatorDictionary.isInDict(char))
 		{
-			firstNumbersAndString = splitFirstNumbersFromRestString(currentElement);
+			let firstNumbersAndString = splitFirstNumbersFromRestString(currentElement);
 			if (firstNumbersAndString[0] !== '') { expressionArray.push(firstNumbersAndString[0]); }
 			if (firstNumbersAndString[1] !== '') { expressionArray.push(firstNumbersAndString[1]); }
 			currentElement = ''; 
@@ -488,7 +487,7 @@ function splitExpressionElements(expressionString, operatorDictionary)
 			currentElement += char;
 		}	
 	}
-	firstNumbersAndString = splitFirstNumbersFromRestString(currentElement);
+	let firstNumbersAndString = splitFirstNumbersFromRestString(currentElement);
 	if (firstNumbersAndString[0] !== '') { expressionArray.push(firstNumbersAndString[0]); }
 	if (firstNumbersAndString[1] !== '') { expressionArray.push(firstNumbersAndString[1]); }
 	currentElement = ''; 	
@@ -500,7 +499,7 @@ function splitExpressionElements(expressionString, operatorDictionary)
 
 function validateParenthesisLocations(expressionArray)
 {
-	openCount = 0;
+	let openCount = 0;
 	for (const [index, element] of expressionArray.entries())
 	{
 		if (element === '(')
@@ -524,8 +523,8 @@ function checkForMultiPurposeOperators(elements, operatorDictionary)
 {
 	for (const [index, element] of elements.entries())
 	{
-		before = index === 0 ? null : elements[index - 1];
-		after = index === elements.length - 1 ? null : elements[index + 1];
+		let before = index === 0 ? null : elements[index - 1];
+		let after = index === elements.length - 1 ? null : elements[index + 1];
 		elements[index] = operatorDictionary.checkWhichPurpose(before, element, after);
 
 	}
@@ -533,11 +532,11 @@ function checkForMultiPurposeOperators(elements, operatorDictionary)
 }
 function validateOperatorPositions(elements, operatorDictionary)
 {
-	invalid_operators = [];
+	let invalid_operators = [];
 	for (const [index, element] of elements.entries())
 	{
-		before = index === 0 ? null : elements[index - 1];
-		after = index === elements.length - 1 ? null : elements[index + 1];
+		let before = index === 0 ? null : elements[index - 1];
+		let after = index === elements.length - 1 ? null : elements[index + 1];
 		if(operatorDictionary.checkOperatorPositionValid(before, element, after) === false) {invalid_operators.push(element);}
 	}
 	return invalid_operators;
@@ -546,10 +545,10 @@ function validateOperatorPositions(elements, operatorDictionary)
 function fillGapsWithMultiplication(elements, operatorDictionary)
 {
 	if (elements.length == 0 || elements.length == 1) { return ; }	
-	for (index = 0; index < elements.length - 1; index++)
+	for (let index = 0; index < elements.length - 1; index++)
 	{
-		first = elements[index];
-		second = elements[index + 1];
+		let first = elements[index];
+		let second = elements[index + 1];
 		if (operatorDictionary.shouldFillWithMultiply(first, second))
 		{
 			elements.splice(index + 1, 0, '*');
@@ -560,12 +559,12 @@ function fillGapsWithMultiplication(elements, operatorDictionary)
 }
 function operatorCheckTree(topNode, operatorDictionary)
 {
-	invalidOperators = [];
+	let invalidOperators = [];
 
 	function recursiveCheck(node, operatorDictionary)
 	{
 		checkForMultiPurposeOperators(node.getElements(), operatorDictionary);
-		invalidFound = validateOperatorPositions(node.getElements(), operatorDictionary);
+		let invalidFound = validateOperatorPositions(node.getElements(), operatorDictionary);
 		if (invalidFound.length > 0) {invalidOperators.push(invalidFound); }	
 		
 		fillGapsWithMultiplication(node.getElements(), operatorDictionary);
@@ -586,23 +585,18 @@ function operatorCheckTree(topNode, operatorDictionary)
 
 
 
-function run(expressionString)
+export function checkExpression(expressionString)
 {
-	operatorDictionary = new OperatorDict(); // Create an operator dictionary with all operators
-	expressionArray = splitExpressionElements(expressionString, operatorDictionary); // split the expressionstring into arrays 
+	let operatorDictionary = new OperatorDict(); // Create an operator dictionary with all operators
+	let expressionArray = splitExpressionElements(expressionString, operatorDictionary); // split the expressionstring into arrays 
 	
 	if (validateParenthesisLocations(expressionArray) === false) { console.log("Invalid parenthesis spots"); return 1; }
 	
-	topNode = createExpressionNodeTree(expressionArray);
-	invalidOperators = operatorCheckTree(topNode, operatorDictionary);
+	let topNode = createExpressionNodeTree(expressionArray);
+	let invalidOperators = operatorCheckTree(topNode, operatorDictionary);
 	if (invalidOperators.length > 0) { console.log('Invalid operators spotted -->', invalidOperators); return 2; }
 	//console.log(expressionArray);	
 	//console.log(topNode);
 	
 	return 0;
 }
-
-
-
-expressionString = '4 + --(-sqrt(-9))';
-console.log(run(expressionString));
