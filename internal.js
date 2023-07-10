@@ -227,8 +227,8 @@ class OperatorDict
 	}
 	initializeOperatorDict()
 	{
-		this.operatorDict['pos'] = new OneSidedOperator('pos', pos, ['number', 'string', OneSidedOperator, ExpressionNode]);
-		this.operatorDict['neg'] = new OneSidedOperator('neg', neg, ['number', 'string', OneSidedOperator, ExpressionNode]);
+		this.operatorDict['pos'] = new OneSidedOperator('pos', pos, ['number', 'string', ExpressionNode]);
+		this.operatorDict['neg'] = new OneSidedOperator('neg', neg, ['number', 'string', ExpressionNode]);
 		this.operatorDict['abs'] = new OneSidedOperator('abs', Math.abs, [ExpressionNode]);
 		
 		this.operatorDict['sqrt'] = new OneSidedOperator('sqrt', Math.sqrt, [ExpressionNode]);
@@ -619,22 +619,33 @@ function solve(topNode, operatorDictionary) {
 	
 	function recursiveSolve(node) {
 		let elements = node.getElements();
-		for (const operatorGroup of operatorDictionary) {
+		for (const operatorGroup of operatorDictionary.getOrderOfOperators()) {
 				for (let index = 0; index < elements.length; index++) {
-					if (operatorGroup.includes(elements[index])) {
-							if (operatorDictionary.getOperatorClass(elements[index]) instanceof OneSidedOperator) {
-								if (elements[index + 1] instanceof ExpressionNode) {
-									operatorDictionary.getOperatorClass(elements[index]).getFunc()(solve(elements[index + 1]))
-								} 
-								else {
-									elements[index] = operatorDictionary.getOperatorClass(elements[index]).getFunc()(elements[index + 1])
-									elements.splice(index+1 , 1)
-								}
-
+					if (operatorGroup.includes(elements[index])) { 
+						let expressionFunction = operatorDictionary.getOperatorClass(elements[index]).getFunc()
+						if (operatorDictionary.getOperatorClass(elements[index]) instanceof OneSidedOperator) {
+							if (elements[index + 1] instanceof ExpressionNode) {
+								elements[index + 1] = recursiveSolve(elements[index + 1])
+							} 
+							
+							elements[index] = expressionFunction(elements[index + 1])
+							elements.splice(index+1 , 1)
+							
+						}
+						else if (operatorDictionary.getOperatorClass(elements[index]) instanceof TwoSidedOperator) {
+							if (elements[index - 1] instanceof ExpressionNode) {
+								elements[index - 1] = recursiveSolve(elements[index - 1])
 							}
-							else if (operatorDictionary.getOperatorClass(elements[index]) instanceof TwoSidedOperator) {
-
+							if (elements[index + 1] instanceof ExpressionNode) {
+								elements[index + 1] = recursiveSolve(elements[index + 1])
 							}
+								
+							elements[index - 1] = expressionFunction(elements[index - 1], elements[index + 1])
+							elements.splice(index, 2)
+							index--;
+
+
+						}
 
 					}
 
@@ -642,20 +653,16 @@ function solve(topNode, operatorDictionary) {
 
 		}
 
-
-		console.log(elements)
-
-
-			
+		return elements[0]
 
 	}
-
 	recursiveSolve(topNode)
+	return topNode.getElements()[0]
 }
 
 
 
-export function checkExpression(expressionString)
+export function solveExpression(expressionString)
 {
 	let operatorDictionary = new OperatorDict(); // Create an operator dictionary with all operators
 	let expressionArray = splitExpressionElements(expressionString, operatorDictionary); // split the expressionstring into arrays 
@@ -667,7 +674,7 @@ export function checkExpression(expressionString)
 	if (invalidOperators.length > 0) {return null }
 	convert(topNode, operatorDictionary)
 	printExpressionNodeTree(topNode)
-
+	let result = solve(topNode, operatorDictionary)
 	
-	return 0;
+	return result;
 }

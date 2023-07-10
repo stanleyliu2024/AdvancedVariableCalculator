@@ -1,4 +1,4 @@
-import { checkExpression } from "./internal.js"
+import { solveExpression } from "./internal.js"
 
 const inputsContainer = document.getElementById('inputs-container');
 const inputButtonContainer = document.getElementById('input-button-container');
@@ -19,13 +19,15 @@ function analyzeAction(action) {
     mainInput.value = '';
   } else if (action === 'Enter') {
     if (mainInput.value != '') {
-      if (checkExpression(mainInput.value) === null) {
+      let result = solveExpression(mainInput.value)
+      if (result === null) {
         mainInput.style.border = "1px solid red"
         mainInput.style.backgroundColor = "pink"
       }
       else {
         mainInput.style.border = "1px solid black"
         mainInput.style.backgroundColor = "white"
+        mainInput.value = result + ' = ' + mainInput.value
         moveInputsUpByOne();
       }
       
