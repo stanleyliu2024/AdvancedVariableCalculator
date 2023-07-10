@@ -19,14 +19,14 @@ function analyzeAction(action) {
     mainInput.value = '';
   } else if (action === 'Enter') {
     if (mainInput.value != '') {
-      if (checkExpression(mainInput.value) === 0) {
+      if (checkExpression(mainInput.value) === null) {
+        mainInput.style.border = "1px solid red"
+        mainInput.style.backgroundColor = "pink"
+      }
+      else {
         mainInput.style.border = "1px solid black"
         mainInput.style.backgroundColor = "white"
         moveInputsUpByOne();
-      }
-      else {
-        mainInput.style.border = "1px solid red"
-        mainInput.style.backgroundColor = "pink"
       }
       
     }
@@ -51,8 +51,11 @@ function moveInputsUpByOne() {
 
 variableStore.addEventListener('click', function(event) {
   if (event.target.tagName === 'BUTTON' && event.target.id != "verify-pairs") {
-    console.log("h")
     Array.from(event.target.parentNode.childNodes).filter(element => element.tagName === 'INPUT').forEach(element => element.value = "")
+  } 
+  else if (event.target.tagName === 'BUTTON' && event.target.id === 'verify-pairs') {
+    
+
   }
   
 

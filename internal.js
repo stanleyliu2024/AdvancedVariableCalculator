@@ -330,6 +330,9 @@ class OperatorDict
 		return beforeCheck === true && afterCheck === true;	
 
 	}
+	getOrderOfOperators() {
+		return this.orderOfOperators
+	}
 
 }
 
@@ -583,6 +586,73 @@ function operatorCheckTree(topNode, operatorDictionary)
 	return invalidOperators;	
 }
 
+function convert(topNode, operatorDictionary) {
+
+	function recursiveConvert(node) {
+
+		for (const [index, element] of node.getElements().entries()) {
+			if (element instanceof ExpressionNode) {
+				recursiveConvert(element)
+			}
+			else if (operatorDictionary.isInDict(element)) {
+
+			}
+			else {
+				let convertedToNumber = parseFloat(element)
+				if (!isNaN(convertedToNumber)) {
+					console.log(convertedToNumber)
+					node.getElements()[index] = convertedToNumber
+				}
+			}
+
+		}
+
+
+	}
+
+	recursiveConvert(topNode)
+
+
+}
+
+function solve(topNode, operatorDictionary) {
+	
+	function recursiveSolve(node) {
+		let elements = node.getElements();
+		for (const operatorGroup of operatorDictionary) {
+				for (let index = 0; index < elements.length; index++) {
+					if (operatorGroup.includes(elements[index])) {
+							if (operatorDictionary.getOperatorClass(elements[index]) instanceof OneSidedOperator) {
+								if (elements[index + 1] instanceof ExpressionNode) {
+									operatorDictionary.getOperatorClass(elements[index]).getFunc()(solve(elements[index + 1]))
+								} 
+								else {
+									elements[index] = operatorDictionary.getOperatorClass(elements[index]).getFunc()(elements[index + 1])
+									elements.splice(index+1 , 1)
+								}
+
+							}
+							else if (operatorDictionary.getOperatorClass(elements[index]) instanceof TwoSidedOperator) {
+
+							}
+
+					}
+
+				}
+
+		}
+
+
+		console.log(elements)
+
+
+			
+
+	}
+
+	recursiveSolve(topNode)
+}
+
 
 
 export function checkExpression(expressionString)
@@ -590,13 +660,14 @@ export function checkExpression(expressionString)
 	let operatorDictionary = new OperatorDict(); // Create an operator dictionary with all operators
 	let expressionArray = splitExpressionElements(expressionString, operatorDictionary); // split the expressionstring into arrays 
 	
-	if (validateParenthesisLocations(expressionArray) === false) { console.log("Invalid parenthesis spots"); return 1; }
+	if (validateParenthesisLocations(expressionArray) === false) {return null }
 	
 	let topNode = createExpressionNodeTree(expressionArray);
 	let invalidOperators = operatorCheckTree(topNode, operatorDictionary);
-	if (invalidOperators.length > 0) { console.log('Invalid operators spotted -->', invalidOperators); return 2; }
-	//console.log(expressionArray);	
-	//console.log(topNode);
+	if (invalidOperators.length > 0) {return null }
+	convert(topNode, operatorDictionary)
+	printExpressionNodeTree(topNode)
+
 	
 	return 0;
 }
