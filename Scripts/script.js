@@ -7,7 +7,6 @@ const inputsContainer = document.getElementById('inputs-container')
 const taskBar = document.getElementById('task-bar')
 const inputButtonContainer = document.getElementById('input-button-container');
 const mainInput = document.getElementById('main-input');
-const historyInputs = document.getElementsByClassName('history-input');
 
 const variableStore = document.getElementById('variable-store')
 
@@ -61,19 +60,6 @@ function onEnter() {
 }
 
 function moveInputsUpByOne() {
-  /*
-  let newLine = document.createElement("input")
-  newLine.classList.add("history-input")
-  newLine.setAttribute("readonly", "readonly")
-  inputsContainer.appendChild(newLine, inputsContainer.firstChild)
-  const historyInputsArray = Array.from(historyInputs);
-
-  for (let index = historyInputsArray.length - 1; index > 0; index--) {
-    historyInputsArray[index].value = historyInputsArray[index - 1].value
-    historyInputsArray[index].style.border = "1px solid black"
-  }
-  historyInputsArray[0].value = ''
-  */
 
   let historyList = inputsContainer.querySelector("ul")
   let newHistoryElement = document.createElement('li')
@@ -94,6 +80,14 @@ function moveInputsUpByOne() {
   historyInputsArray[0].querySelector('input').value = ''
 
 }
+
+inputsContainer.addEventListener('click', function(event) {
+  if (event.target.tagName === 'BUTTON') {
+    event.target.parentNode.remove()
+  }
+})
+
+
 
 variableStore.addEventListener('click', function(event) {
   if (event.target.tagName === 'BUTTON' && event.target.id != "verify-pairs") {

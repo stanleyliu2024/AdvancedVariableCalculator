@@ -160,9 +160,7 @@ This part has the task bar
 }
 
 
-#main-input {
-  border: 1px solid black;
-}
+
 
 #inputs-container ul {
   overflow-y: auto;
@@ -195,12 +193,21 @@ This part has the task bar
   color: red;
   text-align: center;
   background-color: whitesmoke;
-  border: 1px solid black;
+  border-left: 1px solid black;
+  border-right: none;
+  border-top: none;
+  border-bottom: none;
 }
 
 #inputs-container ul li button:active {
   background-color: gray;
 }
+
+#inputs-container #main-input {
+  border: 1px solid black;
+  width: 100%;
+}
+
 
 #input-button-container {
   width: 100%;
@@ -220,6 +227,8 @@ This part has the task bar
 #calculator button:active {
   background-color: lightgray;
 }
+
+
 
 
 /*
