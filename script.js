@@ -10,8 +10,15 @@ const historyInputs = document.getElementsByClassName('history-input');
 const variableStore = document.getElementById('variable-store')
 
 inputButtonContainer.addEventListener('click', function (event) {
-  analyzeAction(event.target.dataset.id);
-});
+  analyzeAction(event.target.dataset.id)
+})
+
+mainInput.addEventListener('keydown', function(event) {
+  if (event.key === 'Enter') {
+    onEnter()
+  }
+
+})
 
 function analyzeAction(action) {
   if (!action) {
@@ -20,22 +27,26 @@ function analyzeAction(action) {
   if (action === 'Clear') {
     mainInput.value = '';
   } else if (action === 'Enter') {
-    if (mainInput.value != '') {
-      let result = solveExpression(mainInput.value, operatorDictionary, variableDictionary)
-      if (result === null) {
-        mainInput.style.border = "1px solid red"
-        mainInput.style.backgroundColor = "pink"
-      }
-      else {
-        mainInput.style.border = "1px solid black"
-        mainInput.style.backgroundColor = "white"
-        mainInput.value = result + ' = ' + mainInput.value
-        moveInputsUpByOne();
-      }
-      
-    }
+    onEnter()
   } else {
     mainInput.value += action;
+  }
+}
+
+function onEnter() {
+  if (mainInput.value != '') {
+    let result = solveExpression(mainInput.value, operatorDictionary, variableDictionary)
+    if (result === null) {
+      mainInput.style.border = "1px solid red"
+      mainInput.style.backgroundColor = "pink"
+    }
+    else {
+      mainInput.style.border = "1px solid black"
+      mainInput.style.backgroundColor = "white"
+      mainInput.value = result + ' = ' + mainInput.value
+      moveInputsUpByOne();
+    }
+
   }
 }
 

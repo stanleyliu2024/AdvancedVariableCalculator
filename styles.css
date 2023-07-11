@@ -9,9 +9,11 @@ body {
 
 header {
   padding: 1.5em;
+  background-color: pink;
+}
+h1 {
   font-size: 2rem;
   text-align: center;
-  background-color: pink;
 }
 
 #subheading {
@@ -31,22 +33,43 @@ header {
 #calculator button:active {
   background-color: lightgray;
 }
-
 main {
+  margin: 0;
+  background-color: lightcyan;
+  padding: 0.25em;
+
+}
+
+#description {
+  display: block;
+  margin: 1em auto;
+  padding: 0.7em;
   width: 90%;
-  margin: 2em;
+  text-align: center;
+  background-color: lightblue;
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 0.9rem;
+  line-height: 1.5;
+  border-radius: 5px;
+}
+
+#application {
+  max-width: 700px;
+  width: 90%;
   background-color: lightblue;
   border: none;
   border-radius: 5px;
   min-width: 300px;
   padding: 1em;
   display: flex;
+  margin: 2em auto;
+
 }
 
 #calculator {
   display: flex;
   flex-direction: column;
-  width: 50%
+  width: 50%;
 }
 
 #inputs-container {

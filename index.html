@@ -10,143 +10,139 @@
     -->
     <link rel="stylesheet" href="styles.css" />
     <script type="module" src="script.js"></script>
-    <script type="module" src ="internal.js"></script>
+    <script type="module" src="internal.js"></script>
   </head>
   <body>
     <header>
-      Welcome To My Variable Storing calculator<span id="subheading"
-        >By Stanley Liu</span
-      >
+      <h1>
+        Welcome To My Variable Storing calculator<span id="subheading"
+          >By Stanley Liu</span
+        >
+      </h1>
     </header>
 
     <main>
-      <div id="calculator">
-        <div id="inputs-container">
-          <input class="history-input" readonly />
-          <input class="history-input" readonly />
-          <input class="history-input" readonly />
-          <input class="history-input" readonly />
-          <input class="history-input" readonly />
-          <input class="history-input" readonly />
-          <input
-            class="history-input"
-            id="main-input"
-            placeholder="Enter expression"
-          />
+
+      <p id="description"> This calculator stores your favorite variables and allows you to use them in the calculator. On the left, you will see a normal calculator, just type in or click the buttons of what you want to be solved. On the right, there is the variable starting part. Type in the variable key and value and then click the verify button to verify that those are valid.
+      </p>
+
+      <div id="application">
+        <div id="calculator">
+          <div id="inputs-container">
+            <input class="history-input" readonly />
+            <input class="history-input" readonly />
+            <input class="history-input" readonly />
+            <input class="history-input" readonly />
+            <input class="history-input" readonly />
+            <input class="history-input" readonly />
+            <input class="history-input" readonly />
+            <input class="history-input" readonly />
+            <input
+              class="history-input"
+              id="main-input"
+              placeholder="Enter expression"
+            />
+          </div>
+
+          <div id="input-button-container">
+            <button data-id="1">1</button>
+            <button data-id="2">2</button>
+            <button data-id="3">3</button>
+            <button data-id="+">+</button>
+            <button data-id="4">4</button>
+            <button data-id="5">5</button>
+            <button data-id="6">6</button>
+            <button data-id="-">-</button>
+            <button data-id="7">7</button>
+            <button data-id="8">8</button>
+            <button data-id="9">9</button>
+            <button data-id="*">*</button>
+            <button data-id="0">0</button>
+            <button data-id="(">(</button>
+            <button data-id=")">)</button>
+            <button data-id="/">/</button>
+            <button data-id="^">^</button>
+
+            <button data-id="sqrt(">sqrt()</button>
+            <button data-id="abs(">abs()</button>
+            <button data-id="Enter">Enter</button>
+            <button data-id="Clear">Clear</button>
+          </div>
         </div>
 
-        <div id="input-button-container">
-          <button data-id="1">1</button>
-          <button data-id="2">2</button>
-          <button data-id="3">3</button>
-          <button data-id="+">+</button>
-          <button data-id="4">4</button>
-          <button data-id="5">5</button>
-          <button data-id="6">6</button>
-          <button data-id="-">-</button>
-          <button data-id="7">7</button>
-          <button data-id="8">8</button>
-          <button data-id="9">9</button>
-          <button data-id="*">*</button>
-          <button data-id="0">0</button>
-          <button data-id="(">(</button>
-          <button data-id=")">)</button>
-          <button data-id="/">/</button>
-          <button data-id="^">^</button>
-
-          <button data-id="sqrt(">sqrt()</button>
-          <button data-id="abs(">abs()</button>
-          <button data-id="Enter">Enter</button>
-          <button data-id="Clear">Clear</button>
-        </div>
-      </div>
-
-      <div id="variable-store">
+        <div id="variable-store">
           <div class="pair">
-              <input class="key" placeholder="key">
-              <input class="value" placeholder="value">
-              <button>X</button>
-
-          </div>
-
-          <div class="pair">
-            <input class="key" placeholder="key">
-            <input class="value" placeholder="value">
+            <input class="key" placeholder="key" />
+            <input class="value" placeholder="value" />
             <button>X</button>
-
-          </div>
-          <div class="pair">
-            <input class="key" placeholder="key">
-            <input class="value" placeholder="value">
-            <button>X</button>
-
           </div>
 
           <div class="pair">
-            <input class="key" placeholder="key">
-            <input class="value" placeholder="value">
+            <input class="key" placeholder="key" />
+            <input class="value" placeholder="value" />
             <button>X</button>
-
+          </div>
+          <div class="pair">
+            <input class="key" placeholder="key" />
+            <input class="value" placeholder="value" />
+            <button>X</button>
           </div>
 
           <div class="pair">
-            <input class="key" placeholder="key">
-            <input class="value" placeholder="value">
+            <input class="key" placeholder="key" />
+            <input class="value" placeholder="value" />
             <button>X</button>
-
           </div>
 
           <div class="pair">
-            <input class="key" placeholder="key">
-            <input class="value" placeholder="value">
+            <input class="key" placeholder="key" />
+            <input class="value" placeholder="value" />
             <button>X</button>
-
           </div>
 
           <div class="pair">
-            <input class="key" placeholder="key">
-            <input class="value" placeholder="value">
+            <input class="key" placeholder="key" />
+            <input class="value" placeholder="value" />
             <button>X</button>
-
           </div>
 
           <div class="pair">
-            <input class="key" placeholder="key">
-            <input class="value" placeholder="value">
+            <input class="key" placeholder="key" />
+            <input class="value" placeholder="value" />
             <button>X</button>
-
           </div>
 
           <div class="pair">
-            <input class="key" placeholder="key">
-            <input class="value" placeholder="value">
+            <input class="key" placeholder="key" />
+            <input class="value" placeholder="value" />
             <button>X</button>
-
           </div>
 
           <div class="pair">
-            <input class="key" placeholder="key">
-            <input class="value" placeholder="value">
+            <input class="key" placeholder="key" />
+            <input class="value" placeholder="value" />
             <button>X</button>
-
           </div>
 
           <div class="pair">
-            <input class="key" placeholder="key">
-            <input class="value" placeholder="value">
+            <input class="key" placeholder="key" />
+            <input class="value" placeholder="value" />
             <button>X</button>
+          </div>
 
+          <div class="pair">
+            <input class="key" placeholder="key" />
+            <input class="value" placeholder="value" />
+            <button>X</button>
           </div>
           <div class="pair">
-            <input class="key" placeholder="key">
-            <input class="value" placeholder="value">
+            <input class="key" placeholder="key" />
+            <input class="value" placeholder="value" />
             <button>X</button>
-
           </div>
-          
+
           <button id="verify-pairs">Verify Pairs</button>
-        
-      
+        </div>
       </div>
     </main>
   </body>
