@@ -149,11 +149,11 @@ This part has the task bar
 }
 
 #inputs-container {
-  overflow-y: scroll;
+  overflow: auto;
   display: flex;
-  flex-direction: column;
-  justify-content: end;
-  height: 200px;
+  flex-direction: column-reverse;
+  height: 18em;
+
   border: 1px solid black;
   border-radius: 5px;
 }

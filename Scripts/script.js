@@ -63,18 +63,20 @@ function onEnter() {
 function moveInputsUpByOne() {
   let newLine = document.createElement("input")
   newLine.classList.add("history-input")
-  inputsContainer.insertBefore(newLine, inputsContainer.firstChild)
+  newLine.setAttribute("readonly", "readonly")
+  inputsContainer.appendChild(newLine, inputsContainer.firstChild)
   const historyInputsArray = Array.from(historyInputs);
+
   for (const [index, input] of historyInputsArray.entries()) {
-    if (index != historyInputsArray.length - 1) {
-      input.value = historyInputsArray[index + 1].value;
+    if (index != 0) {
+      input.value = historyInputsArray[index - 1].value;
       if (input.value != "") {
         input.style.border = "1px solid black"
       }
-    } else {
-      input.value = '';
-    }
-  }
+   }
+
+  } 
+  historyInputsArray[0].value = ''
 
   
 }
