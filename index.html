@@ -38,6 +38,7 @@
                   <li>Values can be expressions only with operations and numbers like 5 * 3</li>
                   <li>If keys are duplicated, the latest value will be taken</li>
                   <li>Currently, multiple decimals in one number will not be rejected</li>
+                  <li>Only key value pairs that were verified and highlighted green are usable</li>
                 </ul>
             
             </div>
@@ -62,6 +63,7 @@
       <div id="application">
         <div id="calculator">
           <div id="inputs-container">
+            <!--
             <input class="history-input" readonly />
             <input class="history-input" readonly />
             <input class="history-input" readonly />
@@ -70,6 +72,7 @@
             <input class="history-input" readonly />
             <input class="history-input" readonly />
             <input class="history-input" readonly />
+            -->
             <input
               class="history-input"
               id="main-input"
@@ -174,6 +177,12 @@
             <input class="value" placeholder="value" />
             <button>X</button>
           </div>
+          <div class="pair">
+            <input class="key" placeholder="key" />
+            <input class="value" placeholder="value" />
+            <button>X</button>
+          </div>
+      
 
           <button id="verify-pairs">Verify Pairs</button>
         </div>

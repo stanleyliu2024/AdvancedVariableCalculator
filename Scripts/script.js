@@ -3,6 +3,7 @@ const operatorDictionary = new OperatorDict()
 const variableDictionary = new VariableDict(operatorDictionary)
 
 
+const inputsContainer = document.getElementById('inputs-container')
 const taskBar = document.getElementById('task-bar')
 const inputButtonContainer = document.getElementById('input-button-container');
 const mainInput = document.getElementById('main-input');
@@ -60,6 +61,9 @@ function onEnter() {
 }
 
 function moveInputsUpByOne() {
+  let newLine = document.createElement("input")
+  newLine.classList.add("history-input")
+  inputsContainer.insertBefore(newLine, inputsContainer.firstChild)
   const historyInputsArray = Array.from(historyInputs);
   for (const [index, input] of historyInputsArray.entries()) {
     if (index != historyInputsArray.length - 1) {
@@ -71,11 +75,13 @@ function moveInputsUpByOne() {
       input.value = '';
     }
   }
+
+  
 }
 
 variableStore.addEventListener('click', function(event) {
   if (event.target.tagName === 'BUTTON' && event.target.id != "verify-pairs") {
-
+    
     Array.from(event.target.parentNode.childNodes).filter(element => element.tagName === 'INPUT').forEach((element) => {
       if (element.classList.contains("key")) {
         variableDictionary.remove(element.value)
