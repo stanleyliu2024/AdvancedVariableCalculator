@@ -152,6 +152,7 @@ This part has the task bar
   overflow: auto;
   display: flex;
   flex-direction: column-reverse;
+  align-items: center;
   height: 18em;
 
   border: 1px solid black;
@@ -159,7 +160,7 @@ This part has the task bar
 }
 
 .history-input {
-  width: 100%;
+  width: 98%;
   padding: 1em;
   border: none;
 }
