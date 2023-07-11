@@ -450,6 +450,15 @@ function splitFirstNumbersFromRestString(currentElement)
 	return [stringNumbers, stringString];
 }
 
+function splitNumbersFromLetters(currentElement) {
+	let matches = currentElement.match(/[a-zA-Z]+|[0-9\.]+/g)
+	if (matches === null || matches === undefined) {
+		return []
+	} else {
+		return matches
+	}
+}
+
 function splitExpressionElements(expressionString, operatorDictionary)
 {
 	let expressionArray = [];
@@ -462,9 +471,11 @@ function splitExpressionElements(expressionString, operatorDictionary)
 		}
 		if (char === '(' || char === ')' || operatorDictionary.isInDict(char))
 		{
-			let firstNumbersAndString = splitFirstNumbersFromRestString(currentElement);
-			if (firstNumbersAndString[0] !== '') { expressionArray.push(firstNumbersAndString[0]); }
-			if (firstNumbersAndString[1] !== '') { expressionArray.push(firstNumbersAndString[1]); }
+			let splittedElements = splitNumbersFromLetters(currentElement)
+			splittedElements.forEach((splittedElement) => {
+				expressionArray.push(splittedElement)
+			})
+			
 			currentElement = ''; 
 			expressionArray.push(char);			
 		} 
@@ -473,9 +484,10 @@ function splitExpressionElements(expressionString, operatorDictionary)
 			currentElement += char;
 		}	
 	}
-	let firstNumbersAndString = splitFirstNumbersFromRestString(currentElement);
-	if (firstNumbersAndString[0] !== '') { expressionArray.push(firstNumbersAndString[0]); }
-	if (firstNumbersAndString[1] !== '') { expressionArray.push(firstNumbersAndString[1]); }
+	let splittedElements = splitNumbersFromLetters(currentElement)
+			splittedElements.forEach((splittedElement) => {
+				expressionArray.push(splittedElement)
+			})
 	currentElement = ''; 	
 	return expressionArray;
 
@@ -671,18 +683,21 @@ function solve(topNode, operatorDictionary) {
 
 export function solveExpression(expressionString, operatorDictionary, variableDictionary)
 {
-	let expressionArray = splitExpressionElements(expressionString, operatorDictionary); // split the expressionstring into arrays 
-	
+	// First split the expression string into an expression array
+	let expressionArray = splitExpressionElements(expressionString, operatorDictionary); 
+	// Validate if the parenthesis are in the right places
 	if (validateParenthesisLocations(expressionArray) === false) {return null }
-	
+	// Change the expression array into an expression node tree
 	let topNode = createExpressionNodeTree(expressionArray);
-	printExpressionNodeTree(topNode)
+	// Validate operators are in the right places
 	let invalidOperators = operatorCheckTree(topNode, operatorDictionary);
 	if (invalidOperators.length > 0) {return null }
+	// Replace variables with its values
 	replaceVariables(topNode, operatorDictionary, variableDictionary)
+	// Convert all the strings to integers
 	let failedConversions = convert(topNode, operatorDictionary)
 	if (failedConversions.length > 0) { return null }
-	
+	// Solve
 	let result = solve(topNode, operatorDictionary)
 	if (result === null || result === undefined || isNaN(result)) { return null }
 	return result;

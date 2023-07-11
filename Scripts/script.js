@@ -30,6 +30,8 @@ function analyzeAction(action) {
     return
   }
   if (action === 'Clear') {
+    mainInput.style.border = "1px solid black"
+    mainInput.style.backgroundColor = "white"
     mainInput.value = '';
   } else if (action === 'Enter') {
     onEnter()
