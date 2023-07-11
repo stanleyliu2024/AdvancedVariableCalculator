@@ -61,6 +61,7 @@ function onEnter() {
 }
 
 function moveInputsUpByOne() {
+  /*
   let newLine = document.createElement("input")
   newLine.classList.add("history-input")
   newLine.setAttribute("readonly", "readonly")
@@ -72,8 +73,26 @@ function moveInputsUpByOne() {
     historyInputsArray[index].style.border = "1px solid black"
   }
   historyInputsArray[0].value = ''
+  */
 
-  
+  let historyList = inputsContainer.querySelector("ul")
+  let newHistoryElement = document.createElement('li')
+  let historyInput = document.createElement('input')
+  let clearButton = document.createElement('button')
+  clearButton.textContent = 'X'
+  newHistoryElement.appendChild(historyInput)
+  newHistoryElement.appendChild(clearButton)
+  historyList.appendChild(newHistoryElement)
+
+
+  let historyInputsArray = Array.from(historyList.querySelectorAll('li'))
+  for (let index = historyInputsArray.length - 1; index > 0; index--) {
+    let changingHistory = historyInputsArray[index].querySelector('input')
+    changingHistory.value = historyInputsArray[index - 1].querySelector('input').value
+    historyInputsArray[index].style.border = "1px solid black"
+  }
+  historyInputsArray[0].querySelector('input').value = ''
+
 }
 
 variableStore.addEventListener('click', function(event) {

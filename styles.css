@@ -150,32 +150,65 @@ This part has the task bar
 }
 
 #inputs-container {
-  overflow: auto;
-  display: flex;
-  flex-direction: column-reverse;
-  align-items: center;
   height: 18em;
-
   border: 1px solid black;
   border-radius: 5px;
+  justify-content: end;
+  display: flex;
+  align-items: stretch; /* I know this is the default but it makes it clear */
+
 }
 
-.history-input {
-  width: 98%;
-  padding: 1em;
-  border: none;
-}
 
 #main-input {
   border: 1px solid black;
 }
 
+#inputs-container ul {
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column-reverse;
+  list-style-type: none;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+
+}
+
+#inputs-container ul li {
+  width: 98%;
+  padding: 0;
+  display: flex;
+  margin: 0 auto;
+
+}
+#inputs-container ul li input {
+  width: 90%;
+  padding: 1em;
+  margin: 0;
+}
+
+#inputs-container ul li button {
+  width: 10%;
+  font-family: bold;
+  font-size: 0.8rem;
+  color: red;
+  text-align: center;
+  background-color: whitesmoke;
+  border: 1px solid black;
+}
+
+#inputs-container ul li button:active {
+  background-color: gray;
+}
+
 #input-button-container {
+  width: 100%;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
 }
 
-#calculator button {
+#input-button-container button {
   height: 3em;
   border: 1px solid black;
   background-color: whitesmoke;

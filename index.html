@@ -39,6 +39,7 @@
                   <li>If keys are duplicated, the latest value will be taken</li>
                   <li>Currently, multiple decimals in one number will not be rejected</li>
                   <li>Only key value pairs that were verified and highlighted green are usable</li>
+                  <li>To use 6e-35, store e and 10 and do 6e^-35</li>
                 </ul>
             
             </div>
@@ -63,11 +64,14 @@
       <div id="application">
         <div id="calculator">
           <div id="inputs-container">
-            <input
-              class="history-input"
-              id="main-input"
-              placeholder="Enter expression"
-            />
+            <ul>
+              <li>
+                <input
+                  id="main-input"
+                  placeholder="Enter expression"/>
+                <button>X</button>
+              </li>
+            </ul>
           </div>
           <div id="input-button-container">
             <button data-id="1">1</button>
