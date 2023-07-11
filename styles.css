@@ -84,6 +84,12 @@ This part has the task bar
   width: 30%;
 
 }
+
+#rules {
+  position: relative;
+  width: 30%;
+}
+
 .dropdown-button {
   padding: 1em;
   width: 100%;
@@ -110,23 +116,10 @@ This part has the task bar
   padding: 0.25em;
 }
 
-.common-pair span {
-  width: 50%;
-  padding: 0.5em;
-  display: inline-block;
-  background-color: azure;
-  border: 1px solid lightgray;
-
-}
-
 .hide-dropdown {
   display: none;
 }
 
-#rules {
-  position: relative;
-  width: 30%;
-}
 
 .dropdown ul {
     width: 95%;
@@ -141,6 +134,7 @@ This part has the task bar
   border: 1px solid gray;
   background-color: azure;
 }
+
 
 
 

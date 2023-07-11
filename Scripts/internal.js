@@ -443,11 +443,10 @@ function splitFirstNumbersFromRestString(currentElement)
 	if (currentElement === null) { return [null, null]; }
 	if (currentElement === '') { return ['', '']; }
 		
-	let numbersFirst = currentElement.match(/^\[d+|.]/);
-	
+	let numbersFirst = currentElement.match(/^[0-9\.]*/);
 	let stringNumbers = numbersFirst === null ? '' : numbersFirst[0];
 	let stringString = currentElement.substr(stringNumbers.length);
-	
+
 	return [stringNumbers, stringString];
 }
 
@@ -677,12 +676,13 @@ export function solveExpression(expressionString, operatorDictionary, variableDi
 	if (validateParenthesisLocations(expressionArray) === false) {return null }
 	
 	let topNode = createExpressionNodeTree(expressionArray);
+	printExpressionNodeTree(topNode)
 	let invalidOperators = operatorCheckTree(topNode, operatorDictionary);
 	if (invalidOperators.length > 0) {return null }
 	replaceVariables(topNode, operatorDictionary, variableDictionary)
 	let failedConversions = convert(topNode, operatorDictionary)
 	if (failedConversions.length > 0) { return null }
-	//printExpressionNodeTree(topNode)
+	
 	let result = solve(topNode, operatorDictionary)
 	if (result === null || result === undefined || isNaN(result)) { return null }
 	return result;

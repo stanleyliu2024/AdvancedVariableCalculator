@@ -36,6 +36,7 @@
                   <li>Keys must ONLY contain alphabetical characters</li>
                   <li>Values CANNOT contain other keys within</li>
                   <li>If keys are duplicated, the latest value will be taken</li>
+                  <li>Currently multiple decimals in one number will not rejected</li>
                 </ul>
             
             </div>
@@ -46,23 +47,13 @@
             Common variables
           </button>
           <div class='dropdown hide-dropdown'>
-            <div class="common-pair"><span>g</span><span>9.8</span></div>
-            <div class="common-pair">
-              <span>G</span><span>6.677*10^-11</span>
-            </div>
-            <div class="common-pair"><span>k</span><span>9.0*10^9</span></div>
-            <div class="common-pair">
-              <span>e</span><span>1.6*10^-19</span>
-            </div>
-            <div class="common-pair">
-              <span>c</span><span>3.00*10^8</span>
-            </div>
-            <div class="common-pair">
-              <span>m</span><span>1.67*10^-27</span>
-            </div>
-            <div class="common-pair">
-              <span>epsilonKnot</span><span>8.85*10^-12</span>
-            </div>
+            <ul>
+                <li>G = 6.677 * 10^-11</li>
+                <li>e = 1.6 * 10^-19</li>
+                <li>c = 3.00 * 10^8</li>
+                <li>m = 1.67 * 10^-27</li>
+                <li>epsilonNaught = 8.85 * 10^-12</li>
+            </ul>
           </div>
         </div>
       </div>
@@ -99,6 +90,7 @@
             <button data-id="9">9</button>
             <button data-id="*">*</button>
             <button data-id="0">0</button>
+            <button data-id=".">.</button>
             <button data-id="(">(</button>
             <button data-id=")">)</button>
             <button data-id="/">/</button>
