@@ -345,9 +345,13 @@ export class VariableDict
 	}
 	add(key, value)
 	{
-		if (this.checkKeyString(key) === false ) { return 1; }
-		if (this.checkValueString(value) === false ) { return 2; }
-		this.variableDict[key] = value;
+		if (this.checkKeyString(key) === false ) { return 1 }
+		if (value === '') { return 2 }
+		let calculatedValue = solveExpression(value, this.operatorDict, new VariableDict(this.operatorDict))
+		console.log(calculatedValue)
+		if (calculatedValue === null || calculatedValue === undefined || isNaN(calculatedValue)) {return 2}
+
+		this.variableDict[key] = calculatedValue;
 		return 0;
 	}
 	remove(key)
@@ -368,31 +372,10 @@ export class VariableDict
 	checkKeyString(key)
 	{
 		const keyNameRegexCheck = /^[A-Za-z_]+$/;
+		if (key === '') { return false; }
 		if (keyNameRegexCheck.test(key) === false) { return false; }
 		if (this.operatorDict.isInDict(key)) { return false; }
 		return true;
-	}
-	checkValueString(value)
-	{
-		const numbersRegex = /^[0-9]$/;
-		for (const char of value)
-		{
-			if (char === '(' || char === ')' || char === ' ')
-			{	
-			}
-			else if (numbersRegex.test(char))
-			{
-			}
-			else if (this.operatorDict.isInDict(char))
-			{
-			}
-			else
-			{
-				return false;
-			}
-		}		
-		return true;
-
 	}
 	clearDict() {
 		this.variableDict = {}
@@ -701,6 +684,6 @@ export function solveExpression(expressionString, operatorDictionary, variableDi
 	let failedConversions = convert(topNode, operatorDictionary)
 	if (failedConversions.length > 0) { return null }
 	let result = solve(topNode, operatorDictionary)
-	
+	if (result === null || result === undefined || isNaN(result)) { return null }
 	return result;
 }
