@@ -1,6 +1,6 @@
 import { solveExpression, OperatorDict, VariableDict } from "./internal.js"
 const operatorDictionary = new OperatorDict()
-const variableDictionary = new VariableDict()
+const variableDictionary = new VariableDict(operatorDictionary)
 
 const inputsContainer = document.getElementById('inputs-container');
 const inputButtonContainer = document.getElementById('input-button-container');
@@ -55,11 +55,36 @@ function moveInputsUpByOne() {
 
 variableStore.addEventListener('click', function(event) {
   if (event.target.tagName === 'BUTTON' && event.target.id != "verify-pairs") {
-    Array.from(event.target.parentNode.childNodes).filter(element => element.tagName === 'INPUT').forEach(element => element.value = "")
+    Array.from(event.target.parentNode.childNodes).filter(element => element.tagName === 'INPUT').forEach((element) => {element.value = ""; element.style.border = '1px solid gray'; element.style.backgroundColor = 'whitesmoke';})
   } 
   else if (event.target.tagName === 'BUTTON' && event.target.id === 'verify-pairs') {
-    for (const pair of Array.from(event.target.parentNode.childNodes).filter(element => element instanceof HTMLDivElement)) {
-        console.log(pair)
+    variableDictionary.clearDict()
+    let pairs = Array.from(event.target.parentNode.childNodes).filter(element => element instanceof HTMLDivElement)
+    for (const pair of pairs) {
+      let keyInput = pair.getElementsByClassName("key")[0]
+      let valueInput = pair.getElementsByClassName("value")[0]
+      keyInput.style.backgroundColor = 'whitesmoke'
+      valueInput.style.backgroundColor = 'whitesmoke'
+      keyInput.style.border = '1px solid gray'
+      valueInput.style.border = '1px solid gray'
+      if (keyInput.value === '' || valueInput.value === ''){
+        continue;
+      }
+
+
+      let status = variableDictionary.add(keyInput.value, valueInput.value)
+      if (status === 0) {
+        keyInput.style.backgroundColor = 'lightgreen'
+        valueInput.style.backgroundColor = 'lightgreen'
+        keyInput.style.border = '1px solid green'
+        valueInput.style.border = '1px solid green'
+      }
+      else{
+        keyInput.style.backgroundColor = 'pink'
+        keyInput.style.border = '1px solid red'
+        valueInput.style.backgroundColor = 'pink'
+        valueInput.style.border = '1px solid red'
+      }
 
     }
 

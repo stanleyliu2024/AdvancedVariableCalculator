@@ -345,10 +345,10 @@ export class VariableDict
 	}
 	add(key, value)
 	{
-		if (this.checkKeyString(key) === false ) { return false; }
-		if (this.checkValueString(value) === false ) { return false; }
+		if (this.checkKeyString(key) === false ) { return 1; }
+		if (this.checkValueString(value) === false ) { return 2; }
 		this.variableDict[key] = value;
-		return true;
+		return 0;
 	}
 	remove(key)
 	{
@@ -394,7 +394,9 @@ export class VariableDict
 		return true;
 
 	}
-
+	clearDict() {
+		this.variableDict = {}
+	}
 
 }
 
@@ -586,8 +588,30 @@ function operatorCheckTree(topNode, operatorDictionary)
 	return invalidOperators;	
 }
 
+function replaceVariables(topNode, operatorDictionary, variableDictionary) {
+
+
+	function recursiveReplace(node) {
+		for (const [index, element] of node.getElements().entries()) {
+			if (element instanceof ExpressionNode) {
+				recursiveReplace(element)
+			} else if (operatorDictionary.isInDict(element)) {	
+				continue;
+			} else if (variableDictionary.isInDict(element)) {
+				node.getElements()[index] = variableDictionary.getValue(element)
+			}
+
+		}
+
+
+	}
+	recursiveReplace(topNode)
+
+}
+
 function convert(topNode, operatorDictionary) {
 
+	let failedConversions = []
 	function recursiveConvert(node) {
 
 		for (const [index, element] of node.getElements().entries()) {
@@ -600,8 +624,9 @@ function convert(topNode, operatorDictionary) {
 			else {
 				let convertedToNumber = parseFloat(element)
 				if (!isNaN(convertedToNumber)) {
-					console.log(convertedToNumber)
 					node.getElements()[index] = convertedToNumber
+				} else {
+						failedConversions.push(element)
 				}
 			}
 
@@ -611,7 +636,7 @@ function convert(topNode, operatorDictionary) {
 	}
 
 	recursiveConvert(topNode)
-
+	return failedConversions
 
 }
 
@@ -658,7 +683,6 @@ function solve(topNode, operatorDictionary) {
 		
 	}
 	recursiveSolve(topNode)
-	console.log(topNode.getElements()[0])
 	return topNode.getElements()[0]
 }
 
@@ -673,7 +697,9 @@ export function solveExpression(expressionString, operatorDictionary, variableDi
 	let topNode = createExpressionNodeTree(expressionArray);
 	let invalidOperators = operatorCheckTree(topNode, operatorDictionary);
 	if (invalidOperators.length > 0) {return null }
-	convert(topNode, operatorDictionary)
+	replaceVariables(topNode, operatorDictionary, variableDictionary)
+	let failedConversions = convert(topNode, operatorDictionary)
+	if (failedConversions.length > 0) { return null }
 	let result = solve(topNode, operatorDictionary)
 	
 	return result;
