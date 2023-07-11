@@ -16,7 +16,7 @@ main {
 */
 header {
   padding: 1.5em;
-  background-color: pink;
+  background-color: lightgrey;
 }
 h1 {
   font-size: 2rem;
@@ -68,13 +68,14 @@ h1 {
 This part has the task bar 
 */
 #task-bar {
-  display: block;
+  display: flex;
   margin: 1em auto 0.25em auto;
   width: 90%;
   background-color: lightblue;
   border-radius: 5px;
   padding: 0.5em;
   max-width: 700px;
+  gap: 1em;
   
 }
 
@@ -122,7 +123,24 @@ This part has the task bar
   display: none;
 }
 
+#rules {
+  position: relative;
+  width: 30%;
+}
 
+.dropdown ul {
+    width: 95%;
+    list-style-type: none;
+    padding: 0;
+    margin: 0.2em auto;
+}
+
+.dropdown li {
+  width: 100%;
+  padding: 0.5em;
+  border: 1px solid gray;
+  background-color: azure;
+}
 
 
 

@@ -4,10 +4,6 @@
     <title>Variable Storing Calculator</title>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
-    <!--
-      Need a visual blank slate?
-      Remove all code in `styles.css`!
-    -->
     <link rel="stylesheet" href="styles.css" />
     <script type="module" src="Scripts/script.js"></script>
     <script type="module" src="Scripts/internal.js"></script>
@@ -31,6 +27,20 @@
       </p>
 
       <div id="task-bar">
+        <div id="rules">
+            <button class="dropdown-button">Rules</button>
+            <div class ='dropdown hide-dropdown'>
+                <ul>
+                  <li>Functions like sqrt and abs must have () after</li>
+                  <li>An open parenthesis must have a closing</li>
+                  <li>Keys must ONLY contain alphabetical characters</li>
+                  <li>Values CANNOT contain other keys within</li>
+                  <li>If keys are duplicated, the latest value will be taken</li>
+                </ul>
+            
+            </div>
+        </div>
+
         <div id="common-variables">
           <button class="dropdown-button">
             Common variables

@@ -2,7 +2,6 @@ import { solveExpression, OperatorDict, VariableDict } from "./internal.js"
 const operatorDictionary = new OperatorDict()
 const variableDictionary = new VariableDict(operatorDictionary)
 
-const inputsContainer = document.getElementById('inputs-container');
 
 const taskBar = document.getElementById('task-bar')
 const inputButtonContainer = document.getElementById('input-button-container');
@@ -41,7 +40,9 @@ function analyzeAction(action) {
 
 function onEnter() {
   if (mainInput.value != '') {
+
     let result = solveExpression(mainInput.value, operatorDictionary, variableDictionary)
+
     if (result === null) {
       mainInput.style.border = "1px solid red"
       mainInput.style.backgroundColor = "pink"
@@ -86,6 +87,7 @@ variableStore.addEventListener('click', function(event) {
   else if (event.target.tagName === 'BUTTON' && event.target.id === 'verify-pairs') {
     variableDictionary.clearDict()
     let pairs = Array.from(event.target.parentNode.childNodes).filter(element => element instanceof HTMLDivElement)
+    
     for (const pair of pairs) {
       let keyInput = pair.getElementsByClassName("key")[0]
       let valueInput = pair.getElementsByClassName("value")[0]
