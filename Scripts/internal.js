@@ -348,7 +348,6 @@ export class VariableDict
 		if (this.checkKeyString(key) === false ) { return 1 }
 		if (value === '') { return 2 }
 		let calculatedValue = solveExpression(value, this.operatorDict, new VariableDict(this.operatorDict))
-		console.log(calculatedValue)
 		if (calculatedValue === null || calculatedValue === undefined || isNaN(calculatedValue)) {return 2}
 
 		this.variableDict[key] = calculatedValue;

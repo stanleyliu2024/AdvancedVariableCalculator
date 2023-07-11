@@ -69,7 +69,6 @@ variableStore.addEventListener('click', function(event) {
 
     Array.from(event.target.parentNode.childNodes).filter(element => element.tagName === 'INPUT').forEach((element) => {
       if (element.classList.contains("key")) {
-        console.log(element.value)
         variableDictionary.remove(element.value)
       }
       element.value = ""; element.style.border = '1px solid gray'; element.style.backgroundColor = 'whitesmoke'; 
