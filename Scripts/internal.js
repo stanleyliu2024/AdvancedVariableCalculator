@@ -443,7 +443,7 @@ function splitFirstNumbersFromRestString(currentElement)
 	if (currentElement === null) { return [null, null]; }
 	if (currentElement === '') { return ['', '']; }
 		
-	let numbersFirst = currentElement.match(/^\d+/);
+	let numbersFirst = currentElement.match(/^\[d+|.]/);
 	
 	let stringNumbers = numbersFirst === null ? '' : numbersFirst[0];
 	let stringString = currentElement.substr(stringNumbers.length);
@@ -682,6 +682,7 @@ export function solveExpression(expressionString, operatorDictionary, variableDi
 	replaceVariables(topNode, operatorDictionary, variableDictionary)
 	let failedConversions = convert(topNode, operatorDictionary)
 	if (failedConversions.length > 0) { return null }
+	//printExpressionNodeTree(topNode)
 	let result = solve(topNode, operatorDictionary)
 	if (result === null || result === undefined || isNaN(result)) { return null }
 	return result;

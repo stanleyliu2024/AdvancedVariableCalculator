@@ -22,14 +22,38 @@
     </header>
 
     <main>
-
-      <p id="description"> This calculator stores your favorite variables and allows you to use them in the calculator. On the left, you will see a normal calculator, just type in or click the buttons of what you want to be solved. On the right, there is the variable starting part. Type in the variable key and value and then click the verify button to verify that those are valid.
+      <p id="description">
+        This calculator stores your favorite variables and allows you to use
+        them in the calculator. On the left, you will see a normal calculator,
+        just type in or click the buttons of what you want to be solved. On the
+        right, there is the variable starting part. Type in the variable key and
+        value and then click the verify button to verify that those are valid.
       </p>
 
       <div id="task-bar">
-        <button id="common-variables-dropdown-button">Common variables</button>
         <div id="common-variables">
-          
+          <button class="dropdown-button">
+            Common variables
+          </button>
+          <div class='dropdown hide-dropdown'>
+            <div class="common-pair"><span>g</span><span>9.8</span></div>
+            <div class="common-pair">
+              <span>G</span><span>6.677*10^-11</span>
+            </div>
+            <div class="common-pair"><span>k</span><span>9.0*10^9</span></div>
+            <div class="common-pair">
+              <span>e</span><span>1.6*10^-19</span>
+            </div>
+            <div class="common-pair">
+              <span>c</span><span>3.00*10^8</span>
+            </div>
+            <div class="common-pair">
+              <span>m</span><span>1.67*10^-27</span>
+            </div>
+            <div class="common-pair">
+              <span>epsilonKnot</span><span>8.85*10^-12</span>
+            </div>
+          </div>
         </div>
       </div>
 

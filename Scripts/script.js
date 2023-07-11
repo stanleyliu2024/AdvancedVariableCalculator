@@ -3,11 +3,17 @@ const operatorDictionary = new OperatorDict()
 const variableDictionary = new VariableDict(operatorDictionary)
 
 const inputsContainer = document.getElementById('inputs-container');
+
+const taskBar = document.getElementById('task-bar')
 const inputButtonContainer = document.getElementById('input-button-container');
 const mainInput = document.getElementById('main-input');
 const historyInputs = document.getElementsByClassName('history-input');
 
 const variableStore = document.getElementById('variable-store')
+
+
+
+
 
 inputButtonContainer.addEventListener('click', function (event) {
   analyzeAction(event.target.dataset.id)
@@ -113,5 +119,23 @@ variableStore.addEventListener('click', function(event) {
   }
   
 
+
+})
+
+
+
+taskBar.addEventListener('click', function(event) {
+  if (event.target.classList[0] === 'dropdown-button') {
+    let menu = event.target.parentNode;
+    let dropdown = menu.querySelector('.dropdown')
+    
+    if (dropdown.classList.contains('hide-dropdown')) {
+      dropdown.classList.remove('hide-dropdown')
+    }
+    else {
+      dropdown.classList.add('hide-dropdown')
+    }
+
+  }
 
 })
