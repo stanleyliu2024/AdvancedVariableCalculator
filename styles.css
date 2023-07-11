@@ -37,6 +37,7 @@ h1 {
 
 
 #description {
+  max-width: 700px;
   display: block;
   margin: 1em auto;
   padding: 0.7em;
@@ -49,6 +50,29 @@ h1 {
   border-radius: 5px;
 }
 
+#task-bar {
+  display: block;
+  margin: 1em auto 0.25em auto;
+  width: 90%;
+  background-color: lightblue;
+  border-radius: 5px;
+  padding: 0.3em;
+  max-width: 700px;
+  
+}
+
+#common-variables-dropdown-button {
+  padding: 1em;
+  font-size: 0.8rem;
+  background-color: whitesmoke;
+  border: none;
+  border-radius: 4px;
+}
+
+#common-variables-dropdown-button:active {
+  background-color: lightslategray;
+
+}
 
 #application {
   max-width: 700px;
@@ -58,7 +82,10 @@ h1 {
   border-radius: 5px;
   padding: 1em;
   display: flex;
-  margin: 2em auto;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 0;
+  margin-bottom: 2em;
 
 }
 
