@@ -243,9 +243,52 @@ This part has the task bar
   width: 50%;
   display: flex;
   flex-direction: column;
+  list-style-type: none;
+  margin: 0;
+  border: 1px solid red;
+  padding: 0;
+
+}
+
+#variable-store li {
+  border: 1px solid red;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5em;
 
 
 }
+
+#variable-store li .key,
+#variable-store li .value,
+#variable-store li button{
+  padding: 1em;
+  background-color: whitesmoke;
+  border: 1px solid gray;
+  border-radius: 5px;
+}
+
+#variable-store li .key {
+  width: 25%;
+
+}
+
+#variable-store li .value {
+  width: 45%;
+}
+
+#variable-store li button {
+  width: 15%;
+  color: red;
+  font-weight: bold;
+}
+
+#variable-store li button:active {
+  background-color: lightgray;
+}
+
 
 .pair {
   width: 100%;
@@ -253,7 +296,6 @@ This part has the task bar
   justify-content: center;
   gap: 0.5em;
   align-items: center;
-
 
 }
 
