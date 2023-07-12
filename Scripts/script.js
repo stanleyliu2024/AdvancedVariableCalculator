@@ -91,33 +91,34 @@ inputsContainer.addEventListener('click', function(event) {
 
 variableStore.addEventListener('click', function(event) {
   if (event.target.tagName === 'BUTTON' && event.target.id != "verify-pairs") {
-    
-    Array.from(event.target.parentNode.childNodes).filter(element => element.tagName === 'INPUT').forEach((element) => {
-      if (element.classList.contains("key")) {
-        variableDictionary.remove(element.value)
-      }
-      element.value = ""; element.style.border = '1px solid gray'; element.style.backgroundColor = 'whitesmoke'; 
-    
-    })
+    let pair = Array.from(event.target.parentNode.querySelectorAll('input'))
+    variableDictionary.remove(pair[0].value)
+    pair.forEach((inputElement) => {
+      inputElement.value = ""
+      inputElement.style.border = '1px solid gray'
+      inputElement.style.backgroundColor = 'whitesmoke'
 
+    })
 
   } 
   else if (event.target.tagName === 'BUTTON' && event.target.id === 'verify-pairs') {
     variableDictionary.clearDict()
-    let pairs = Array.from(event.target.parentNode.childNodes).filter(element => element instanceof HTMLDivElement)
-    
+
+    let pairs = Array.from(event.target.parentNode.querySelectorAll('ul li'))
+
     for (const pair of pairs) {
-      let keyInput = pair.getElementsByClassName("key")[0]
-      let valueInput = pair.getElementsByClassName("value")[0]
+      let inputsInPair = pair.querySelectorAll('input')
+      let keyInput = inputsInPair[0]
+      let valueInput = inputsInPair[1]
       keyInput.style.backgroundColor = 'whitesmoke'
       valueInput.style.backgroundColor = 'whitesmoke'
       keyInput.style.border = '1px solid gray'
       valueInput.style.border = '1px solid gray'
-      
+
       if (keyInput.value === '' || valueInput.value === ''){
         continue;
       }
-      
+
 
       let status = variableDictionary.add(keyInput.value, valueInput.value)
       if (status === 0) {
@@ -133,12 +134,11 @@ variableStore.addEventListener('click', function(event) {
         valueInput.style.border = '1px solid red'
       }
 
+
     }
 
 
   }
-  
-
 
 })
 

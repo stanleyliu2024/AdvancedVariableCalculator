@@ -28,35 +28,43 @@
 
       <div id="task-bar">
         <div id="rules">
-            <button class="dropdown-button">Rules</button>
-            <div class ='dropdown hide-dropdown'>
-                <ul>
-                  <li>All spaces will be ignored so 1 2 will be 12</li>
-                  <li>Functions like sqrt and abs must have () after</li>
-                  <li>An open parenthesis must have a closing</li>
-                  <li>Keys must ONLY contain alphabetical characters</li>
-                  <li>Values can be expressions only with operations and numbers like 5 * 3</li>
-                  <li>If keys are duplicated, the latest value will be taken</li>
-                  <li>Currently, multiple decimals in one number will not be rejected</li>
-                  <li>Only key value pairs that were verified and highlighted green are usable</li>
-                  <li>To use 6e-35, store e and 10 and do 6e^-35</li>
-                  <li>If you have three variables m, g, h, you cannot do mgh because it will treat it as one</li>
-                </ul>
-            
-            </div>
+          <button class="dropdown-button">Rules</button>
+          <div class="dropdown hide-dropdown">
+            <ul>
+              <li>All spaces will be ignored so 1 2 will be 12</li>
+              <li>Functions like sqrt and abs must have () after</li>
+              <li>An open parenthesis must have a closing</li>
+              <li>Keys must ONLY contain alphabetical characters</li>
+              <li>
+                Values can be expressions only with operations and numbers like
+                5 * 3
+              </li>
+              <li>If keys are duplicated, the latest value will be taken</li>
+              <li>
+                Currently, multiple decimals in one number will not be rejected
+              </li>
+              <li>
+                Only key value pairs that were verified and highlighted green
+                are usable
+              </li>
+              <li>To use 6e-35, store e and 10 and do 6e^-35</li>
+              <li>
+                If you have three variables m, g, h, you cannot do mgh because
+                it will treat it as one
+              </li>
+            </ul>
+          </div>
         </div>
 
         <div id="common-variables">
-          <button class="dropdown-button">
-            Common variables
-          </button>
-          <div class='dropdown hide-dropdown'>
+          <button class="dropdown-button">Common</button>
+          <div class="dropdown hide-dropdown">
             <ul>
-                <li>G = 6.677 * 10^-11</li>
-                <li>e = 1.6 * 10^-19</li>
-                <li>c = 3.00 * 10^8</li>
-                <li>m = 1.67 * 10^-27</li>
-                <li>epsilonNaught = 8.85 * 10^-12</li>
+              <li>G = 6.677 * 10^-11</li>
+              <li>e = 1.6 * 10^-19</li>
+              <li>c = 3.00 * 10^8</li>
+              <li>m = 1.67 * 10^-27</li>
+              <li>epsilonNaught = 8.85 * 10^-12</li>
             </ul>
           </div>
         </div>
@@ -67,9 +75,7 @@
           <div id="inputs-container">
             <ul>
               <li>
-                <input
-                  id="main-input"
-                  placeholder="Enter expression"/>
+                <input id="main-input" placeholder="Enter expression" />
               </li>
             </ul>
           </div>
@@ -100,19 +106,66 @@
           </div>
         </div>
 
-        <div id='variable-store'>
+        <div id="variable-store">
           <ul>
             <li>
-              <input class="key" placeholder="key" />
-              <input class="value" placeholder="value" />
+              <input placeholder="key" />
+              <input placeholder="value" />
               <button>X</button>
             </li>
-
-
+            <li>
+              <input placeholder="key" />
+              <input placeholder="value" />
+              <button>X</button>
+            </li>
+            <li>
+              <input placeholder="key" />
+              <input placeholder="value" />
+              <button>X</button>
+            </li>
+            <li>
+              <input placeholder="key" />
+              <input placeholder="value" />
+              <button>X</button>
+            </li>
+            <li>
+              <input placeholder="key" />
+              <input placeholder="value" />
+              <button>X</button>
+            </li>
+            <li>
+              <input placeholder="key" />
+              <input placeholder="value" />
+              <button>X</button>
+            </li>
+            <li>
+              <input placeholder="key" />
+              <input placeholder="value" />
+              <button>X</button>
+            </li>
+            <li>
+              <input placeholder="key" />
+              <input placeholder="value" />
+              <button>X</button>
+            </li>
+            <li>
+              <input placeholder="key" />
+              <input placeholder="value" />
+              <button>X</button>
+            </li>
+            <li>
+              <input placeholder="key" />
+              <input placeholder="value" />
+              <button>X</button>
+            </li>
+            <li>
+              <input placeholder="key" />
+              <input placeholder="value" />
+              <button>X</button>
+            </li>
           </ul>
           <button id="verify-pairs">Verify Pairs</button>
         </div>
-
       </div>
     </main>
   </body>

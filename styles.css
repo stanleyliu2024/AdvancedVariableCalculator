@@ -63,6 +63,7 @@ h1 {
   margin-right: auto;
   margin-top: 0;
   margin-bottom: 2em;
+  gap: 0.5em;
 
 }
 /* 
@@ -241,92 +242,57 @@ This part has the task bar
 
 #variable-store {
   width: 50%;
+  text-align: center;
+}
+
+#variable-store ul {
+  width: 100%;
   display: flex;
   flex-direction: column;
   list-style-type: none;
   margin: 0;
-  border: 1px solid red;
+
   padding: 0;
 
 }
 
-#variable-store li {
-  border: 1px solid red;
+#variable-store ul li {
   width: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 0.5em;
-
+  gap: 0.1em;
+  margin-bottom: 0.1em;
 
 }
 
-#variable-store li .key,
-#variable-store li .value,
-#variable-store li button{
+#variable-store ul li input,
+#variable-store ul li button{
   padding: 1em;
   background-color: whitesmoke;
   border: 1px solid gray;
   border-radius: 5px;
 }
 
-#variable-store li .key {
-  width: 25%;
-
+#variable-store ul li input {
+  width: 40%;
 }
 
-#variable-store li .value {
-  width: 45%;
-}
 
-#variable-store li button {
+#variable-store ul li button {
   width: 15%;
   color: red;
   font-weight: bold;
+  text-align: center;
 }
 
-#variable-store li button:active {
+#variable-store ul li button:active {
   background-color: lightgray;
 }
 
-
-.pair {
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  gap: 0.5em;
-  align-items: center;
-
-}
-
-.pair .key,
-.pair .value,
-.pair button
-{
-  padding: 1em;
-  background-color: whitesmoke;
-  border: 1px solid gray;
-  border-radius: 5px;
-}
-.pair .key {
-  width: 25%;
-}
-.pair .value {
-  width: 45%;
-}
-.pair button {
-  width: 15%;
-  color: red;
-  font-weight: bold;
-}
-
-.pair button:active {
-  background-color: lightgray;
-}
 
 #verify-pairs {
-  margin-top: 1em;
   width: 50%;
   padding: 1em;
-  align-self: center;
+  margin-top: 1em;
 }
