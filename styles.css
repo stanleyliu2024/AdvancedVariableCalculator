@@ -115,6 +115,8 @@ This part has the task bar
   border: 1px solid lightgray;
   background-color: lightgray;
   padding: 0.25em;
+  max-height: 20em;
+  overflow-y: auto;
 }
 
 .hide-dropdown {
