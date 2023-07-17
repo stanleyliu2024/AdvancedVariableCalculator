@@ -1,5 +1,9 @@
 # AdvancedVariableCalculator
 
+## Description
+This is calculator that allows the user to store expressions into variables such that when they input it into the calculator, it converts the variable into the value such that the user does not have to type the whole value or expression again.
+
+Note: I do not use Javascript frameworks as I have used frameworks in other projects and this is to practice my raw Javascript skills in accessing the DOM and creating elements and event listeners.
 
 
 
