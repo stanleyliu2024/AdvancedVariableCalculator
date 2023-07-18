@@ -7,7 +7,7 @@ Note: I do not use Javascript frameworks as I have used frameworks in other proj
 
 Below shows an image of the interface of the calculator. As you can see on the right, we have values stored as variables and when when we want to use them in the actual calculator, we put them into the actualy calculator on the left.
 
-![Interface] interface.png
+![Interface](interface.png)
 
 ## Skills used
 
