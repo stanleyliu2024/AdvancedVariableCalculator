@@ -5,8 +5,9 @@ This is calculator that allows the user to store expressions into variables such
 
 Note: I do not use Javascript frameworks as I have used frameworks in other projects and this is to practice my raw Javascript skills in accessing the DOM and creating elements and event listeners.
 
+Below shows an image of the interface of the calculator. As you can see on the right, we have values stored as variables and when when we want to use them in the actual calculator, we put them into the actualy calculator on the left.
 
-
+![Interface] interface.png
 
 ## Skills used
 
